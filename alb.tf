@@ -6,6 +6,11 @@ resource "aws_lb_target_group" "terraformdemo" {
   health_check {
     path = var.alb_path
   }
+
+  resource "aws_vpc" "main" {
+    cidr_block = "172.30.0.0/16"
+  }
+
   lifecycle {
     create_before_destroy = true
   }
@@ -30,7 +35,6 @@ resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.terraformdemo.arn
   port              = var.alb_port
   protocol          = var.alb_protocol
-  target_type       = "instance"
   #ssl_policy        = "ELBSecurityPolicy-2016-08"
   #certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
 
