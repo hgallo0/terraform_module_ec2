@@ -61,3 +61,13 @@ resource "aws_security_group_rule" "allow_alb" {
 
   security_group_id = aws_security_group.allow_ssh.id
 }
+
+resource "aws_security_group_rule" "allow_alb_e" {
+  type                     = "egress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "-1"
+  source_security_group_id = aws_security_group.allow_web.id
+
+  security_group_id = aws_security_group.allow_ssh.id
+}
