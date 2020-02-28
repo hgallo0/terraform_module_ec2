@@ -7,10 +7,6 @@ resource "aws_lb_target_group" "terraformdemo" {
     path = var.alb_path
   }
 
-  resource "aws_vpc" "main" {
-    cidr_block = "172.30.0.0/16"
-  }
-
   lifecycle {
     create_before_destroy = true
   }
